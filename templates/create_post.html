@@ -1,0 +1,132 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Post</title>
+   <style>
+    /* General body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1877f2;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 20px;
+    align-items: center;
+}
+
+.navbar h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.navbar .nav-links a {
+    color: white;
+    margin-left: 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navbar .nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Form container */
+.form-container {
+    max-width: 500px;
+    margin: 40px auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.form-container h2 {
+    margin-bottom: 20px;
+    color: #1877f2;
+    text-align: center;
+}
+
+/* Form fields */
+form p {
+    margin-bottom: 15px;
+}
+
+form input[type="text"],
+form input[type="file"],
+form textarea,
+form select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+form textarea {
+    resize: none;
+    min-height: 80px;
+}
+
+/* Post button */
+.post-btn {
+    background-color: #1877f2;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.post-btn:hover {
+    background-color: #145dbf;
+}
+
+/* Back link */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #1877f2;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+</style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>MySocial</h1>
+        <div class="nav-links">
+            <a href="{% url 'feed' %}">Feed</a>
+            <a href="{% url 'create_post' %}">Create Post</a>
+            {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+        </div>
+    </div>
+
+    <div class="form-container">
+        <h2>Create a Post</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="post-btn">Post</button>
+        </form>
+        <a href="{% url 'feed' %}" class="back-link">⬅ Back to Feed</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+{%load static%}
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>First Document</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@700&family=Merge+One&display=swap" rel="stylesheet">
+    <style>
+            body{
+            background-image: url('/static/splashbg.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            {% comment %} background-size: initial;  {% endcomment %}
+            {% comment %} background-position: center center; {% endcomment %}
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin:0;
+            padding:0;
+        }
+            
+            h1 {
+                text-align: center;
+                color: #161616ff;
+                position: absolute;
+                left: 5%;
+                top: 35%;
+                width: 80%;
+                font-family: 'Merienda', sans-serif;
+                font-weight: 700;
+                font-size: clamp(20px, 4vw, 48px);
+                line-height: 1.3;
+                text-transform: capitalize;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <h1 class="centered-heading">Where Colleges Communicate, Ideas Collaborate.</h1>
+        
+</body>
+
+<script>
+    // page load ke 2 second baad redirect
+    setTimeout(function() {
+        window.location.href = {% url 'register_view' %}; // Django url name
+    }, 2000); // 2000 milliseconds = 2 seconds
+</script>
+
+</html>

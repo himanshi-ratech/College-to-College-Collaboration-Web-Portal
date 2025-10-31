@@ -1,0 +1,646 @@
+<!doctype html>
+{% load static %}
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Venue</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+        <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+        <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+          <style>
+/* Venue Section Improvements */
+.place {
+    padding: 80px 0;
+    background: #f9fafc;
+}
+
+.custom-title {
+    font-size: 50px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    color: #2c3e50;
+    text-transform: uppercase;
+    margin-bottom: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+.custom-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -10px;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 4px;
+    background: linear-gradient(90deg, #8e2de2, #4a00e0);
+    border-radius: 2px;
+}
+
+/* Card Layout */
+.card {
+    border: none;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.fixed-img {
+    height: 260px;
+    width: 100%;
+    object-fit: cover;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    transition: transform 0.4s ease;
+}
+
+.card:hover .fixed-img {
+    transform: scale(1.05);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    font-size: 22px;
+    font-weight: 600;
+    color: #4a00e0;
+    margin-bottom: 10px;
+}
+
+.card-body h6 {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Add subtle fade-in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.place .card {
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Section background alternation for readability */
+.place:nth-child(even) {
+    background: #ffffff;
+}
+
+/* SRM venue link styling */
+.place a {
+    color: #6c2dc7;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.place a:hover {
+    color: #4a00e0;
+    text-decoration: underline;
+}
+
+        /* Base dropdown styling */
+        .buy_ticket ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .buy_ticket .dropdown {
+            position: relative;
+        }
+
+        .buy_ticket .submenu {
+            display: none; /* by default hidden */
+            position: absolute;
+            top: 100%; /* below the parent */
+            left: 0;
+            background: white;
+            min-width: 240px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        .buy_ticket .submenu li {
+            display: block;
+        }
+
+        .buy_ticket .submenu li a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .buy_ticket .submenu li a:hover {
+            background: #9510a4ff;  /* your theme color */
+            color: #fff;
+        }
+
+        /* Show dropdown on hover */
+        .buy_ticket .dropdown:hover .submenu {
+            display: block;
+        }
+</style>
+
+</head>
+
+    
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area ">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center justify-content-between no-gutters">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="index.html">
+                                    <img src="{% static 'img/barnd/11.png' %}" alt=""  style="width: 180px; height: 180px; object-fit:contain;">
+
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-8">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{% url 'new_home' %}">Home</a></li>
+                                        <li><a href="#">Schedule</a></li>
+                                        <li><a href="{% url 'post' %}">Post</a></li>
+                                        <li><a href="{% url '2event' %}">Events</a></li>
+                                        <li><a class="active" href="#">Venue</a></li>
+                                        <li><a href="{% url '2contact' %}">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 d-none d-lg-block">
+                            <div class="buy_ticket">
+                                <ul>
+                                    <li class = "dropdown">
+
+                                <a href="#" class="boxed-btn-white">
+                                    Settings <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="{% url 'index' %}">Logout</a></li>
+                                </ul>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- slider_area_start -->
+    <div class="slider_area slider_bg_1">
+        <div class="slider_text">
+            <div class="container">
+                <div class="position_relv">
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="title_text title_text2 ">
+                                <h3>Venue Locations</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- slider_area_end -->
+
+    <div class="place ">
+        <div class="container">
+            <h1 class="text-center mb-1 custom-title"> DCRUST VENUES</h1>
+            
+            <div class="row">
+                <!-- 1st image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'audi.jpeg' %}" class="card-img-top fixed-img" alt="Venue 1">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 1</h5>
+                            <h6> DCRUST Auditorium</h6>
+                            <h6> Upstairs </h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2nd image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue2.jpg' %}" class="card-img-top fixed-img" alt="Venue 2">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 2</h5>
+                            <h6> Seminar Hall </h6>
+                            <h6> VS Block 3rd Floor</h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3rd image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue3.jpeg' %}" class="card-img-top fixed-img" alt="Venue 3">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 3</h5>
+                            <h6> DCRUST Auditorium + ATAL Lab </h6>
+                            <h6> Downstairs </h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4th image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue4.png' %}" class="card-img-top fixed-img" alt="Venue 4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 4</h5>
+                            <h6> DCRUST UCC  </h6>
+                            <h6> Ground Floor, Near Library</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <div class="place">
+        <div class="container">
+            <h1 class="text-center mb-1 custom-title"> GJU University VENUES</h1>
+            
+            <div class="row">
+                <!-- 1st image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue5.jpg' %}" class="card-img-top fixed-img" alt="Venue 5">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 1</h5>
+                            <h6> GJU Auditorium</h6>
+                            <h6> Back-Side </h6>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2nd image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue6.png' %}" class="card-img-top fixed-img" alt="Venue 6">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 2</h5>
+                            <h6> Seminar Hall </h6>
+                            <h6> Main Auditorium Left-Side</h6>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+                <div class="place">
+        <div class="container">
+            <h1 class="text-center mb-1 custom-title"> SRM University VENUES</h1>
+            <h2 style="text-align=justify"><a href= "https://shbf.srmist.edu.in/hallbook.php" target="_blank"> Venues Details</a></h2>
+        </div>
+
+        <div class="place">
+        <div class="container">
+            <h1 class="text-center mb-1 custom-title"> PIET College VENUES</h1>
+            
+            <div class="row">
+                <!-- 1st image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue9.jpg' %}" class="card-img-top fixed-img" alt="Venue 7">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 1</h5>
+                            <h6> PIET Auditorium</h6>
+                            {% comment %} <h6> Back-Side </h6> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2nd image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue8.png' %}" class="card-img-top fixed-img" alt="Venue 9">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 2</h5>
+                            <h6> Open Air Threater </h6>
+                            {% comment %} <h6> Main Auditorium Left-Side</h6> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+        <div class="place">
+        <div class="container">
+            <h1 class="text-center mb-1 custom-title"> OP Jindal University VENUES</h1>
+            
+            <div class="row">
+                <!-- 1st image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue10.jpg' %}" class="card-img-top fixed-img" alt="Venue 10">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 1</h5>
+                            {% comment %} <h6> PIET Auditorium</h6> {% endcomment %}
+                            {% comment %} <h6> Back-Side </h6> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2nd image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue11.jpg' %}" class="card-img-top fixed-img" alt="Venue 11">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue 2</h5>
+                            {% comment %} <h6> Open Air Threater </h6> {% endcomment %}
+                            {% comment %} <h6> Main Auditorium Left-Side</h6> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+     <div class="place">
+        <div class="container">
+            <h1 class="text-center mb-1 custom-title"> YMCA VENUES</h1>
+            
+            <div class="row">
+                <!-- 1st image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue12.jpg' %}" class="card-img-top fixed-img" alt="Venue 12">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue</h5>
+                            {% comment %} <h6> PIET Auditorium</h6> {% endcomment %}
+                            {% comment %} <h6> Back-Side </h6> {% endcomment %}
+                        </div>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div> <div class="place">
+        <div class="container">
+            <h1 class="text-center mb-1 custom-title"> NIT Kurukshetra VENUES</h1>
+            
+            <div class="row">
+                <!-- 1st image -->
+                <div class="col-md-6 col-sm-12 mb-4">
+                    <div class="card">
+                        <img src="{% static 'venue13.jpg' %}" class="card-img-top fixed-img" alt="Venue 13">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Venue</h5>
+                            {% comment %} <h6> PIET Auditorium</h6> {% endcomment %}
+                            {% comment %} <h6> Back-Side </h6> {% endcomment %}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!-- faq_area_Start   -->
+    <div class="faq_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="serction_title_large mb-95">
+                        <h3>
+                            Frequently Ask
+                        </h3>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div id="accordion">
+                        <div class="card">
+                            <div class="card-header" id="headingTwo">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse"
+                                        data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+
+                                        <img src="img/barnd/info.png" alt=""> What types of venues are available on campus?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion"
+                                style="">
+                                <div class="card-body">
+                                    We have auditoriums, seminar halls, classrooms, and conference rooms suitable for various events.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingOne">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
+                                        aria-expanded="true" aria-controls="collapseOne">
+                                        <img src="img/barnd/info.png" alt="">Can external organizations use the college venues?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseOne" class="collapse show" aria-labelledby="headingOne"
+                                data-parent="#accordion" style="">
+                                <div class="card-body">
+                                    Yes, external organizations can book venues, subject to approval and applicable fees.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="headingThree">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse"
+                                        data-target="#collapseThree" aria-expanded="false"
+                                        aria-controls="collapseThree">
+                                        <img src="img/barnd/info.png" alt=""> Are there any charges for using college venues?
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-parent="#accordion" style="">
+                                <div class="card-body">
+                                    Charges vary depending on the type of venue, duration, and whether the event is internal or external. 
+                                    Students may have subsidized rates.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <div class="card-header" id="heading_4">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link collapsed" data-toggle="collapse"
+                                        data-target="#collapse_4" aria-expanded="false" aria-controls="collapse_4">
+                                        <img src="img/barnd/info.png" alt=""> Who do I contact for venue-related issues during an event? 
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapse_4" class="collapse" aria-labelledby="heading_4" data-parent="#accordion"
+                                style="">
+                                <div class="card-body">
+                                    The college administration office or the assigned event coordinator should be contacted for any immediate assistance.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- faq_area_end -->
+    
+    <!-- footer_start -->
+    <footer class="footer footer_bg_1">
+        <div class="circle_ball d-none d-lg-block">
+            <img src="img/banner/footer_ball.png" alt="">
+        </div>
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4 col-lg-4">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                        Follow Us
+                                </h3>
+                                <ul>
+                                    <li><a target="_blank" href="https://www.facebook.com/officialdcrustm/">Facebook</a></li>
+                                    <li><a target="_blank" href="https://in.linkedin.com/school/cse-dcrust/">LinkedIn</a></li>
+                                    <li><a target="_blank" href="https://www.youtube.com/watch?v=3BtEmoO3opk">Youtube</a></li>
+                                </ul>
+    
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 col-lg-4">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                        Links
+                                </h3>
+                                <ul>
+                                    <li><a target="_blank" href="{% url '2event' %}">Events</a></li>
+                                    <li><a target="_blank" href="{% url '2venue' %}">Venue</a></li>
+                                    <li><a target="_blank" href="{% url '2contact' %}">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 col-lg-4">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                        Contact Us
+                                </h3>
+                                <p>
+                                    Event Organisation DCRUST <br>
+                                    eventdcrust@contact.com <br>
+                                    +91 967 XXX XX34
+                                    
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copy-right_text">
+                <div class="container">
+                    <div class="footer_border"></div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <!-- footer_end -->
+        
+        <!--all JS here -->
+        <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+        <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'js/popper.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+        <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+        <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+        <script src="{% static 'js/ajax-form.js' %}"></script>
+        <script src="{% static 'js/waypoints.min.js' %}"></script>
+        <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+        <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+        <script src="{% static 'js/scrollIt.js' %}"></script>
+        <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+        <script src="{% static 'js/wow.min.js' %}"></script>
+        <script src="{% static 'js/nice-select.min.js' %}"></script>
+        <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+        <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+        <script src="{% static 'js/jquery.countdown.js' %}"></script>
+        <script src="{% static 'js/plugins.js' %}"></script>
+
+        <!-- contact js -->
+        <script src="{% static 'js/contact.js' %}"></script>
+        <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+        <script src="{% static 'js/jquery.form.js' %}"></script>
+        <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+        <script src="{% static 'js/mail-script.js' %}"></script>
+
+        <script src="{% static 'js/main.js' %}"></script>
+    
+    </body>
+    
+    </html>

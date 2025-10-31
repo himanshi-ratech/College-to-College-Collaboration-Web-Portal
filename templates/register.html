@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                {% comment %} background-color: #f4f4f4; {% endcomment %}
+                background-image: url('/static/splashbg.jpg');
+                background-repeat: no-repeat;
+                background-size: cover;
+                margin: 0;
+                padding: 0;
+            }
+            .container {
+                width: 30%;
+                margin-top: 70px;
+                margin-bottom: 130px;
+                margin-right: 120px;
+                margin-left: 110px;
+                height: auto;
+                background: linear-gradient(90deg, #FCEF91);
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                text-align: center;
+            }
+            label {
+                display: block;
+                margin: 10px 0 5px;
+                padding-left: 50px;
+            }
+            input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                width: 50%;
+                padding: 10px;
+                margin-bottom: 10px;
+                margin-left: 50px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
+            .button-container {
+                display: flex;
+                gap: 20px; /* Space between buttons */
+                justify-content: center; /* Center the buttons horizontally */
+                margin-top: 50px;
+            }
+
+            .button {
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                font-size: 16px;
+                margin-left: 50px;
+                cursor: pointer;
+                transition: background-color 0.3s ease, transform 0.2s ease;
+            }
+
+            .button:hover {
+                transform: translateY(-2px);
+            }
+
+            /* Primary Button Styling */
+            .button-primary {
+                background-color: #007bff;
+                color: white;
+            }
+
+            .button-primary:hover {
+                background-color: #0056b3;
+            }
+
+            /* Secondary Button Styling */
+            .button-secondary {
+                background-color: #6c757d;
+                color: white;
+            }
+
+            .button-secondary:hover {
+                background-color: #545b62;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h2>Register for {{ event.name }}</h2>
+            
+            {% if message %}
+                <p>{{ message }}</p>
+            {% endif %}
+            
+            <form method="POST">
+                {% csrf_token %}
+                <label>Event Name</label>
+                <input type="text" name="event" value="{{ event_name }}" readonly>
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="text" name="college" placeholder="College" required>
+                <input type="text" name="branch" placeholder="Branch" required>
+                <input type="text" name="roll_no" placeholder="Roll Number" required>
+                <input type="text" name="department" placeholder="Department" required>
+                <button type="submit">Pay Now</button>
+            </form>
+
+        </div>
+        <div class="overlay" style="display:none;">
+            <div class="popup">
+                <h2>Registration Successful!</h2>
+                <p>You have successfully registered for {{ event.name }}.</p>
+                <button onclick="closePopup()">Close</button>
+            </div>
+        </div>
+    </body>
+        
+
+    <script>
+    function closePopup(){
+        document.querySelector('.overlay').style.display = 'none';
+    }
+
+    document.getElementById('registrationForm').addEventListener('submit', function(e){
+        e.preventDefault(); // prevent page reload
+        const formData = new FormData(this);
+
+        fetch("", { // empty string = submit to same URL
+            method: "POST",
+            headers: {
+                'X-CSRFToken': formData.get('csrfmiddlewaretoken')
+            },
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            // show overlay on success
+            document.querySelector('.overlay').style.display = 'flex';
+            // optionally clear form
+            document.getElementById('registrationForm').reset();
+        })
+        .catch(error => console.error(error));
+    });
+    </script>
+</html>

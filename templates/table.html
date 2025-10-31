@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ event_name }} - Students Registered</title>
+    <style>
+        /* ====== Global Styles ====== */
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #f9f9fb, #eef1f6);
+            color: #333;
+        }
+
+        /* ====== Page Title ====== */
+        h2 {
+            background: linear-gradient(90deg, #8e2de2, #4a00e0);
+            color: white;
+            padding: 18px 25px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            letter-spacing: 0.5px;
+        }
+
+        /* ====== Card Container ====== */
+        .container {
+            background: #fff;
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 12px;
+            box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+            animation: fadeIn 0.8s ease;
+        }
+
+        /* ====== Table Styling ====== */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+        }
+
+        th {
+            background: #4a00e0;
+            color: #fff;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+        }
+
+        tr:nth-child(even) {
+            background: #f7f7fc;
+        }
+
+        tr:hover {
+            background: #ede7ff;
+            transition: background 0.3s ease;
+        }
+
+        td {
+            font-size: 15px;
+            color: #444;
+        }
+
+        /* ====== Empty State ====== */
+        .empty {
+            text-align: center;
+            font-size: 18px;
+            color: #666;
+            padding: 40px 0;
+        }
+
+        /* ====== Fade In Animation ====== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(25px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ====== Responsive Design ====== */
+        @media (max-width: 768px) {
+            body { padding: 20px; }
+            table, thead, tbody, th, td, tr {
+                display: block;
+            }
+            thead tr {
+                display: none;
+            }
+            tr {
+                margin-bottom: 15px;
+                background: #fff;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+                padding: 10px;
+            }
+            td {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 5px;
+                border: none;
+                border-bottom: 1px solid #eee;
+            }
+            td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                color: #4a00e0;
+                text-transform: uppercase;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Students Registered for "{{ event_name }}"</h2>
+
+    <div class="container">
+        {% if registered_students %}
+        <table>
+            <thead>
+                <tr>
+                    <th>S.No</th>
+                    <th>Name</th>
+                    <th>College</th>
+                    <th>Branch</th>
+                    <th>Roll No</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in registered_students %}
+                <tr>
+                    <td data-label="S.No">{{ forloop.counter }}</td>
+                    <td data-label="Name">{{ student.student_name }}</td>
+                    <td data-label="College">{{ student.college }}</td>
+                    <td data-label="Branch">{{ student.branch }}</td>
+                    <td data-label="Roll No">{{ student.roll_no }}</td>
+                    <td data-label="Department">{{ student.department }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty">
+            No students have registered for this event yet.
+        </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>

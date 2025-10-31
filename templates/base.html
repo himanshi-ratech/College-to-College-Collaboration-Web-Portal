@@ -1,0 +1,85 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Social Media{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+  <!-- Optional icon set (Font Awesome) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        integrity="sha512-hashesnipped" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body class="sm-body">
+  <!-- Top Nav -->
+  <header class="sm-nav">
+    <div class="sm-nav-left">
+      <a href="{% url 'feed' %}" class="sm-brand">
+        <i class="fa-solid fa-users"></i> MySocial
+      </a>
+      <form class="sm-search" action="#" method="get" onsubmit="return false;">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" placeholder="Search on MySocial…" aria-label="Search">
+      </form>
+    </div>
+
+    <nav class="sm-nav-right">
+      <a class="sm-nav-btn" href="{% url 'create_post' %}" title="Create Post">
+        <i class="fa-regular fa-square-plus"></i>
+        <span>Create</span>
+      </a>
+      <a class="sm-nav-btn" href="{% url 'logout' %}" title="Logout">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+      <div class="sm-user-pill" title="{{ request.user.username }}">
+        <div class="sm-avatar">{{ request.user.username|first|upper }}</div>
+        <span class="sm-username">{{ request.user.username }}</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main layout: left rail, feed, right rail -->
+  <main class="sm-shell">
+    <aside class="sm-rail sm-rail-left">
+      <div class="sm-card sm-card-tight">
+        <div class="sm-card-title">Shortcuts</div>
+        <ul class="sm-list">
+          <li><a href="#"><i class="fa-regular fa-bookmark"></i> Saved</a></li>
+          <li><a href="#"><i class="fa-regular fa-bell"></i> Notifications</a></li>
+          <li><a href="#"><i class="fa-regular fa-user"></i> Profile</a></li>
+        </ul>
+      </div>
+    </aside>
+
+    <section class="sm-feed">
+      {% block content %}{% endblock %}
+    </section>
+
+    <aside class="sm-rail sm-rail-right">
+      <div class="sm-card sm-card-tight">
+        <div class="sm-card-title">People you may know</div>
+        <ul class="sm-list sm-list-people">
+          <li><div class="sm-avatar sm-avatar-sm">A</div> <span>Alex</span></li>
+          <li><div class="sm-avatar sm-avatar-sm">R</div> <span>Riya</span></li>
+          <li><div class="sm-avatar sm-avatar-sm">J</div> <span>John</span></li>
+        </ul>
+      </div>
+    </aside>
+  </main>
+
+  <footer class="sm-footer">
+    <small>© {{ now|date:"Y" }} MySocial • Built with Django</small>
+  </footer>
+
+  <script>
+    // Auto-resize comment input (nice UX)
+    document.addEventListener('input', (e) => {
+      if (e.target.classList.contains('sm-input-auto')) {
+        e.target.style.height = 'auto';
+        e.target.style.height = (e.target.scrollHeight) + 'px';
+      }
+    });
+  </script>
+</body>
+</html>

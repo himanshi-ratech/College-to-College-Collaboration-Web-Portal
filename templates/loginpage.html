@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Login</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/static/loginpage.css">
+
+     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        form {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background: #4cae4c;
+        }
+    </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        {% comment %} <h2> Login Here</h2><br>
+        {%if error %}
+            <p style= "color: red;"> {{error}} </p>
+        {% endif %}
+
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            
+            <label for="Email">College Email:</label><br>
+            <input type="email" id="email" name="email"><br>
+
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br><br>
+
+            <input type="submit" value="Login">
+
+        </form> {% endcomment %}
+    <div class="container">
+    <h2>Welcome Back</h2>
+    <h2> Login Here</h2><br>
+    {%if error %}
+            <p style= "color: red;"> {{error}} </p>
+        {% endif %}
+    <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+    <div class="switch">
+      <a href="signup.html">Sign Up</a>
+      <a href="login.html" class="active">Login</a>
+    </div>
+    <form>
+        <label for="Email">College Email:</label><br>
+      <input type="email" placeholder="Email" name="email" required>
+       <label for="password">Password:</label><br>
+      <input type="password" placeholder="Password" name="password" required>
+      
+      <button type="submit" value="Login">Log In</button>
+    </form>
+    </body>
+</html>

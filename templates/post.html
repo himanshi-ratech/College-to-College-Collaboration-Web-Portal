@@ -1,0 +1,620 @@
+{% load static %}
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Feed</title> {% endcomment %}
+
+{% comment %} </head>
+<body>
+    
+</body>
+</html> {% endcomment %}
+
+
+
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Social feed</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- <link rel="manifest" href="site.webmanifest"> -->
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.png">
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- CSS here -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/themify-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'css/flaticon.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'css/slicknav.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+<style>
+    /* Reset some default styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #333333ff;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #1877f2;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 20px;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .navbar .nav-links a {
+            color: white !important;
+            margin-left: 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .navbar .nav-links:hover {
+            color: #e0e0e0 !important;
+            text-decoration: underline !important;
+            
+        }
+
+        /* Container */
+        .container {
+            width:90% ;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        /* Post card */
+        .post-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .post-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .post-header strong {
+            color: #1877f2;
+        }
+
+        .post-header .time {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .post-image {
+            width: 100%;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+
+        .caption {
+            font-size: 15px;
+            margin: 10px 0;
+        }
+
+        /* Actions */
+        .actions {
+            margin-top: 10px;
+        }
+
+        .like-btn {
+            background: none;
+            border: none;
+            color: #1877f2;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .like-btn:hover {
+            text-decoration: underline;
+        }
+        .comments {
+            margin-top: 15px;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+
+        .comment {
+            padding: 6px 0;
+            font-size: 14px;
+        }
+
+        .comment strong {
+            color: #1877f2;
+        }
+
+        .comment .time {
+            font-size: 11px;
+            color: #777;
+            margin-left: 5px;
+        }
+
+        .no-comments {
+            color: #777;
+            font-size: 13px;
+        }
+
+        .comment-form {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .comment-form input {
+            flex: 1;
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .comment-form button {
+            margin-left: 10px;
+            padding: 8px 15px;
+            border: none;
+            background-color: #1877f2;
+            color: white;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .comment-form button:hover {
+            background-color: #165ec9;
+        }
+
+                /* Base dropdown styling */
+        .buy_ticket ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .buy_ticket .dropdown {
+            position: relative;
+        }
+
+        .buy_ticket .submenu {
+            display: none; /* by default hidden */
+            position: absolute;
+            top: 100%; /* below the parent */
+            left: 0;
+            background: white;
+            min-width: 240px;
+            border: 1px solid #ddd;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+            z-index: 1000;
+        }
+
+        .buy_ticket .submenu li {
+            display: block;
+        }
+
+        .buy_ticket .submenu li a {
+            display: block;
+            padding: 10px;
+            color: #333;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .buy_ticket .submenu li a:hover {
+            background: #9510a4ff;  /* your theme color */
+            color: #fff;
+        }
+
+        /* Show dropdown on hover */
+        .buy_ticket .dropdown:hover .submenu {
+            display: block;
+        }
+
+</style>
+
+</head>
+
+<body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+    <!-- header-start -->
+    <header>
+        <div class="header-area ">
+            <div id="sticky-header" class="main-header-area ">
+                <div class="container-fluid p-0">
+                    <div class="row align-items-center justify-content-between no-gutters">
+                        <div class="col-xl-2 col-lg-2">
+                            <div class="logo-img">
+                                <a href="index.html">
+                                    <img src="{% static 'img/barnd/11.png' %}" alt=""  style="width: 180px; height: 180px; object-fit:contain;">
+
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-xl-8 col-lg-8">
+                            <div class="main-menu  d-none d-lg-block">
+                                <nav>
+                                    <ul id="navigation">
+                                        <li><a href="{% url 'new_home' %}">Home</a></li>
+                                        <li><a href="#">Schedule</a></li>
+                                        <li><a class="active" href="#">Post</a></li>
+                                        <li><a href="{% url '2event' %}">Events</a></li> 
+                                        <li><a href="{% url '2venue' %}">Venue</a></li>
+                                        <li><a href="{% url '2contact' %}">Contact</a></li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="col-xl-2 col-lg-2 d-none d-lg-block">
+                            <div class="buy_ticket">
+                                <ul>
+                                    <li class = "dropdown">
+
+                                <a href="#" class="boxed-btn-white">
+                                    Settings <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="submenu">
+                                    <li><a href="{% url 'index' %}">Logout</a></li>
+                                </ul>
+                                </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="mobile_menu d-block d-lg-none"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- header-end -->
+
+    <!-- slider_area_start -->
+    <div class="slider_area slider_bg_1">
+        <div class="slider_text">
+            <div class="container">
+                <div class="position_relv">
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="title_text title_text2 ">
+                                <h3>Posts</h3>
+                                {% comment %} <a href="#" class="boxed-btn-white">Add to your Calendar</a> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- slider_area_end -->
+<section class="blog_area section-padding">
+    <div class="container">
+        <div class="row">
+            <!-- Left Content / Main Blog Posts -->
+            <div class="col-lg-8 mb-5 mb-lg-0">
+                <div class="blog_left_sidebar">
+                <div class="navbar">
+                    <h1>Posts</h1>
+                    <div class="nav-links">
+                        <a href="{% url 'feed' %}">Feed</a>
+                        <a href="{% url 'create_post' %}">Create Post</a>
+                        {% comment %} <a href="{% url 'logout' %}">Logout</a> {% endcomment %}
+                    </div>
+                </div>
+
+                <div class="container">
+                    {% for post in posts %}
+                    <div class="post-card">
+                        <div class="post-header">
+                            <strong>{{ post.author_name  }}</strong>
+                            <span class="time">{{ post.created_at|date:"M d, Y H:i" }}</span>
+                        </div>
+                        {% if post.image %}
+                            <img src="{{ post.image.url }}" alt="Post Image" class="post-image">
+                        {% endif %}
+                        <p class="caption">{{ post.caption }}</p>
+
+                        <div class="actions">
+                            <form action="{% url 'like_post' post.id %}" method="post" style="display:inline">
+                                {% csrf_token %}
+                                <button type="submit" class="like-btn">
+                                    {% if user in post.likes.all %}
+                                        ❤️ Unlike
+                                    {% else %}
+                                        🤍 Like
+                                    {% endif %}
+                                    ({{ post.total_likes }})
+                                </button>
+                            </form>
+                        </div>
+                        <div class="comments">
+                    <p class="comment-count">Comments ({{ post.total_comments }})</p>
+
+
+                    {% for comment in post.comments.all %}
+                        <div class="comment">
+                            <strong>{{ comment.author_name }}</strong> {{ comment.text }}
+                            <span class="time">{{ comment.created_at|date:"M d, Y H:i" }}</span>
+                        </div>
+                    {% empty %}
+                        <p class="no-comments">No comments yet.</p>
+                    {% endfor %}
+
+                    <form action="{% url 'add_comment' post.id %}" method="post" class="comment-form">
+                        {% csrf_token %}
+                        <input type="text" name="author_name" placeholder="Your name">
+                        <input type="text" name="text" placeholder="Write a comment..." required>
+                        <button type="submit">Post</button>
+                    </form>
+                </div>
+                    </div>
+                    {% empty %}
+                    <p>No posts yet.</p>
+                    {% endfor %}
+                </div>
+    
+                </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="blog_right_sidebar">
+                        <aside class="single_sidebar_widget search_widget">
+                            <form action="#">
+                                <div class="form-group">
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder='Search Keyword'
+                                            onfocus="this.placeholder = ''"
+                                            onblur="this.placeholder = 'Search Keyword'">
+                                        <div class="input-group-append">
+                                            <button class="btn" type="button"><i class="ti-search"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn"
+                    type="submit">Search Posts</button>
+            </form>
+            </aside>
+
+            <aside class="single_sidebar_widget post_category_widget">
+                <h4 class="widget_title">Departments</h4>
+                <ul class="list cat-list">
+                    <li>
+                        <a href="#" class="d-flex">
+                            <p>Computer Science</p>
+                            <p>(25)</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex">
+                            <p>Mechanical</p>
+                            <p>(18)</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex">
+                            <p>Electrical</p>
+                            <p>(12)</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex">
+                            <p>Biotech</p>
+                            <p>(7)</p>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="d-flex">
+                            <p>Management</p>
+                            <p>(15)</p>
+                        </a>
+                    </li>
+                </ul>
+            </aside>
+
+            <aside class="single_sidebar_widget popular_post_widget">
+                <h3 class="widget_title">Recent Collaboration Posts</h3>
+                <div class="media post_item">
+                    <img src="img/post/post_1.png" alt="post">
+                    <div class="media-body">
+                        <a href="single-post.html">
+                            <h3>AI Project Collaboration</h3>
+                        </a>
+                        <p>October 1, 2025</p>
+                    </div>
+                </div>
+                <div class="media post_item">
+                    <img src="img/post/post_2.png" alt="post">
+                    <div class="media-body">
+                        <a href="single-post.html">
+                            <h3>Robotics Workshop</h3>
+                        </a>
+                        <p>Yesterday</p>
+                    </div>
+                </div>
+                <div class="media post_item">
+                    <img src="img/post/post_3.png" alt="post">
+                    <div class="media-body">
+                        <a href="single-post.html">
+                            <h3>Environmental Project Ideas</h3>
+                        </a>
+                        <p>2 days ago</p>
+                    </div>
+                </div>
+                <div class="media post_item">
+                    <img src="img/post/post_4.png" alt="post">
+                    <div class="media-body">
+                        <a href="single-post.html">
+                            <h3>Innovation in Renewable Energy</h3>
+                        </a>
+                        <p>3 days ago</p>
+                    </div>
+                </div>
+            </aside>
+
+            <aside class="single_sidebar_widget tag_cloud_widget">
+                <h4 class="widget_title">Popular Tags</h4>
+                <ul class="list">
+                    <li><a href="#">AI</a></li>
+                    <li><a href="#">Robotics</a></li>
+                    <li><a href="#">Environment</a></li>
+                    <li><a href="#">Management</a></li>
+                    <li><a href="#">Innovation</a></li>
+                    <li><a href="#">Collaboration</a></li>
+                    <li><a href="#">Workshops</a></li>
+                    <li><a href="#">Research</a></li>
+                </ul>
+            </aside>
+
+            <aside class="single_sidebar_widget instagram_feeds">
+                <h4 class="widget_title">Project Snapshots</h4>
+                <ul class="instagram_row flex-wrap">
+                    <li><a href="#"><img class="img-fluid" src="img/post/post_5.png" alt=""></a></li>
+                    <li><a href="#"><img class="img-fluid" src="img/post/post_6.png" alt=""></a></li>
+                    <li><a href="#"><img class="img-fluid" src="img/post/post_7.png" alt=""></a></li>
+                    <li><a href="#"><img class="img-fluid" src="img/post/post_8.png" alt=""></a></li>
+                    <li><a href="#"><img class="img-fluid" src="img/post/post_9.png" alt=""></a></li>
+                    <li><a href="#"><img class="img-fluid" src="img/post/post_10.png" alt=""></a></li>
+                </ul>
+            </aside>
+
+            <aside class="single_sidebar_widget newsletter_widget">
+                <h4 class="widget_title">Subscribe for Updates</h4>
+                <form action="#">
+                    <div class="form-group">
+                        <input type="email" class="form-control" onfocus="this.placeholder = ''"
+                            onblur="this.placeholder = 'Enter email'" placeholder='Enter email' required>
+                    </div>
+                    <button class="button rounded-0 primary-bg text-white w-100 btn_1 boxed-btn" type="submit">
+                        Subscribe
+                    </button>
+                </form>
+            </aside>
+        </div>
+    </div>
+</div>
+</div>
+</section>
+    <!--================Blog Area =================-->
+
+    <!-- footer_start -->
+    <footer class="footer footer_bg_1">
+        <div class="circle_ball d-none d-lg-block">
+            <img src="img/banner/footer_ball.png" alt="">
+        </div>
+            <div class="footer_top">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4 col-lg-4">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                        Follow Us
+                                </h3>
+                                <ul>
+                                    <li><a target="_blank" href="https://www.facebook.com/officialdcrustm/">Facebook</a></li>
+                                    <li><a target="_blank" href="https://in.linkedin.com/school/cse-dcrust/">LinkedIn</a></li>
+                                    <li><a target="_blank" href="https://www.youtube.com/watch?v=3BtEmoO3opk">Youtube</a></li>
+                                </ul>
+    
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 col-lg-4">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                        Links
+                                </h3>
+                                <ul>
+                                    <li><a target="_blank" href="{% url '2event' %}">Events</a></li>
+                                    <li><a target="_blank" href="{% url '2venue' %}">Venue</a></li>
+                                    <li><a target="_blank" href="{% url '2contact' %}">Contact Us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 col-lg-4">
+                            <div class="footer_widget">
+                                <h3 class="footer_title">
+                                    Contact Us
+                                </h3>
+                                <p>
+                                    Event Organisation DCRUST <br>
+                                    eventdcrust@contact.com <br>
+                                    +91 967 XXX XX34
+                                    
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copy-right_text">
+                <div class="container">
+                    <div class="footer_border"></div>
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <p class="copy_right text-center">
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    <!-- footer_end -->
+
+    <!--all JS here -->
+    <script src="{% static 'js/vendor/modernizr-3.5.0.min.js' %}"></script>
+    <script src="{% static 'js/vendor/jquery-1.12.4.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/ajax-form.js' %}"></script>
+    <script src="{% static 'js/waypoints.min.js' %}"></script>
+    <script src="{% static 'js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/scrollIt.js' %}"></script>
+    <script src="{% static 'js/jquery.scrollUp.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.min.js' %}"></script>
+    <script src="{% static 'js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+
+    <!-- Contact JS -->
+    <script src="{% static 'js/contact.js' %}"></script>
+    <script src="{% static 'js/jquery.ajaxchimp.min.js' %}"></script>
+    <script src="{% static 'js/jquery.form.js' %}"></script>
+    <script src="{% static 'js/jquery.validate.min.js' %}"></script>
+    <script src="{% static 'js/mail-script.js' %}"></script>
+
+    <script src="{% static 'js/main.js' %}"></script>
+</body>

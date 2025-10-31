@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Register</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/signin.css">
+
+     <style>
+        body {
+            background: #f0f4f8;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .register-container {
+            background: #fff;
+            padding: 30px 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 12px 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-sizing: border-box;
+        }
+
+    .button-container {
+        display: flex;
+        gap: 20px; /* Space between buttons */
+        justify-content: center; /* Center the buttons horizontally */
+        margin-top: 50px;
+    }
+
+    .button {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .button:hover {
+        transform: translateY(-2px);
+    }
+
+    /* Primary Button Styling */
+    .button-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .button-primary:hover {
+        background-color: #0056b3;
+    }
+
+    /* Secondary Button Styling */
+    .button-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .button-secondary:hover {
+        background-color: #545b62;
+    }
+
+    /* Tertiary Button Styling */
+    .button-tertiary {
+        background-color: #28a745;
+        color: white;
+    }
+
+    .button-tertiary:hover {
+        background-color: #218838;
+    }
+
+        .message {
+            color: green;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+    </style>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div class="register-container">
+        <h2>
+            Welcome
+            Check your ID and Login
+        </h2>
+        <form method="post" action="{% url 'signup' %}">
+            {% csrf_token %}
+            {% if messages %}
+                {% for message in messages %}
+                    <p class="message {{ message.tags }}">{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+
+            
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="confirm" placeholder="Confirm Password" required>
+            <button class="button button-primary" type="submit">Register</button>
+            <br>
+            <br>
+            <br>
+            <a href="{% url 'login' %}" class="button button-secondary">Proceed to Login</a>
+            <br>
+            <br>
+            <br>        
+            <a href="{% url 'register_view' %}" class="button button-tertiary">New User? Register Here...</a>
+
+
+            <div class="container">
+    <h2>Getting Started</h2>
+    <div class="switch">
+      <a href="signup.html" class="active">Sign Up</a>
+      <a href="login.html">Login</a>
+    </div>
+    <form>
+      <input type="text" placeholder="Username or Phone number or Email" required>
+      <input type="password" placeholder="Password" required>
+      <input type="password" placeholder="Confirm Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+
+        </form>
+    </div>
+
+   </body>
+</html>
